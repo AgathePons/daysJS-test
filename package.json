@@ -1,0 +1,28 @@
+{
+  "name": "s03e03-bookshelf-agathepons",
+  "version": "0.0.1",
+  "description": "build my book shelf in js",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/O-clock-Zagreus/S03E03-bookshelf-AgathePons.git"
+  },
+  "keywords": [
+    "js",
+    "npm",
+    "git",
+    "nodejs"
+  ],
+  "author": "AgathePons",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/O-clock-Zagreus/S03E03-bookshelf-AgathePons/issues"
+  },
+  "homepage": "https://github.com/O-clock-Zagreus/S03E03-bookshelf-AgathePons#readme",
+  "dependencies": {
+    "dayjs": "^1.10.7"
+  }
+}

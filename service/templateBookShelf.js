@@ -1,3 +1,4 @@
+const dayjs = require('dayjs');
 // Séléction de livres incontournables
 const books = [{
   title: 'The Fellowship of the Ring',
@@ -35,6 +36,28 @@ const books = [{
   date: '1989-02-15'
 }
 ];
+
+const dateFormat = () => {
+  for (let i = 0; i < books.length; i++) {
+      const formatedDate = dayjs(books[i].date).format('dddd, MMMM D[th] YYYY');
+      console.log(formatedDate);
+      books[i].date = formatedDate;
+  }
+};
+dateFormat();
+
+const addAgeOfBook = () => {
+  for (let i = 0; i < books.length; i++) {
+    const currentYear = dayjs().year();
+    const yearOfBook = parseInt(books[i].date.slice(-4));
+    const ageOfTheBook = currentYear - yearOfBook;
+    
+    books[i].age = `${ageOfTheBook} ans`;
+    console.log(typeof yearOfBook);
+    console.log(dayjs().year());
+  }
+};
+addAgeOfBook();
 
 const buildThead = () => {
   const keysOfBook = Object.keys(books[0]);
@@ -74,7 +97,6 @@ const buildTbody = () => {
       tableBodyContent += `<td>${books[i][value]}</td>`;
       //console.log(value, ':', books[i][value]);
     }
-    //tableBodyContent += `<td>${book.title}</td><td>${book.language}</td><td>${book.country}</td><td>${book.author}</td><td>test</td>`;
     tableBodyContent += tableTrEnd;
   }
   tableBodyContent += tableBodyEnd;
@@ -86,10 +108,8 @@ const bookShelf = () => {
   const tableEnd = '</table>';
   const tableHead = buildThead();
   const tableBody = buildTbody();
-  
-  //const theadTable = tableHeadBegin + tableTrBegin + tableThBegin + 'test' + tableThEnd + tableTrEnd + tableHeadEnd;
   const allTable = tableBegin + tableHead + tableBody + tableEnd;
-  //console.log(`ALL TABLE ---${allTable}`);
+
   return allTable;
 };
 
