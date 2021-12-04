@@ -39,14 +39,28 @@ const books = [{
 ];
 
 /**
+ * comparison function to compare books.date strings and order book in books
+ */
+const dateComparison = (a,b) => {
+  if (a.date < b.date) {
+    return -1;
+  }
+  if (a.date > b.date) {
+    return 1;
+  }
+  return 0;
+}
+orderedBooks = books.sort(dateComparison);
+
+/**
  * use dayjs to modify date format in books
  */
 const dateFormat = () => {
   require('dayjs/locale/fr');
-  for (let i = 0; i < books.length; i++) {
-    const formatedDate = dayjs(books[i].date).locale('fr').format('dddd D MMMM YYYY');
-    console.log(dayjs(books[i].date).locale('fr').format('dddd D MMMM YYYY'));
-    books[i].date = formatedDate;
+  for (let i = 0; i < orderedBooks.length; i++) {
+    const formatedDate = dayjs(orderedBooks[i].date).locale('fr').format('dddd D MMMM YYYY');
+    //console.log(dayjs(books[i].date).locale('fr').format('dddd D MMMM YYYY'));
+    orderedBooks[i].date = formatedDate;
   }
 };
 dateFormat();
@@ -55,12 +69,12 @@ dateFormat();
  * calcul the age of the book and add key: value in books for it
  */
 const addAgeOfBook = () => {
-  for (let i = 0; i < books.length; i++) {
+  for (let i = 0; i < orderedBooks.length; i++) {
     const currentYear = dayjs().year();
-    const yearOfBook = parseInt(books[i].date.slice(-4));
+    const yearOfBook = parseInt(orderedBooks[i].date.slice(-4));
     const ageOfTheBook = currentYear - yearOfBook;
     
-    books[i].age = `${ageOfTheBook} ans`;
+    orderedBooks[i].age = `${ageOfTheBook} ans`;
   }
 };
 addAgeOfBook();

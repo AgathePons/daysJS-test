@@ -7,7 +7,7 @@ const buildCSS = () => {
   body {
     display: flex;
     justify-content: center;
-    background-color: gray;
+    background-color: cadetblue;
     font-family: sans-serif;
   }
   table {
