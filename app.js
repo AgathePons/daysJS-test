@@ -2,6 +2,7 @@
 // nous utilisons un page web il nous faut donc la libraire http
 // afin de créer notre serveur
 const http = require('http');
+const buildHead = require('./service/htmlHead');
 const bookShelf = require('./service/templateBookShelf');
 
 // Création de notre serveur
@@ -23,7 +24,9 @@ const server = http.createServer((req, res) => {
   });
 
   // On écrit l'entête de notre page html
-  res.write('<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta http-equiv="X-UA-Compatible" content="ie=edge">    <title>Document</title></head><body>');
+  res.write('<!DOCTYPE html><html lang="en">');
+  res.write(buildHead());
+  res.write('<body>')
 
   // Corps de la page
   res.write(bookShelf());
