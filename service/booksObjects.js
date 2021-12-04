@@ -1,4 +1,5 @@
 const dayjs = require('dayjs');
+//const dayjs = require('dayjs/locale/fr');
 // Séléction de livres incontournables
 const books = [{
     title: 'The Fellowship of the Ring',
@@ -41,9 +42,10 @@ const books = [{
  * use dayjs to modify date format in books
  */
 const dateFormat = () => {
+  require('dayjs/locale/fr');
   for (let i = 0; i < books.length; i++) {
-    const formatedDate = dayjs(books[i].date).format('dddd, MMMM D[th] YYYY');
-    console.log(formatedDate);
+    const formatedDate = dayjs(books[i].date).locale('fr').format('dddd D MMMM YYYY');
+    console.log(dayjs(books[i].date).locale('fr').format('dddd D MMMM YYYY'));
     books[i].date = formatedDate;
   }
 };
