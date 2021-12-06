@@ -4,7 +4,8 @@
   "description": "build my book shelf in js",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js",
+    "dev": "node-dev app.js --no-notify"
   },
   "repository": {
     "type": "git",

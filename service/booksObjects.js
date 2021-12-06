@@ -1,5 +1,10 @@
 const dayjs = require('dayjs');
-//const dayjs = require('dayjs/locale/fr');
+const relativeTime = require('dayjs/plugin/relativeTime');
+dayjs.extend(relativeTime);
+// set fr globally
+const localFr = require('dayjs/locale/fr');
+dayjs.locale('fr');
+
 // Séléction de livres incontournables
 const books = [{
     title: 'The Fellowship of the Ring',
@@ -56,27 +61,23 @@ orderedBooks = books.sort(dateComparison);
  * use dayjs to modify date format in books
  */
 const dateFormat = () => {
-  require('dayjs/locale/fr');
   for (let i = 0; i < orderedBooks.length; i++) {
-    const formatedDate = dayjs(orderedBooks[i].date).locale('fr').format('dddd D MMMM YYYY');
-    //console.log(dayjs(books[i].date).locale('fr').format('dddd D MMMM YYYY'));
+    const formatedDate = dayjs(orderedBooks[i].date).format('dddd D MMMM YYYY');
     orderedBooks[i].date = formatedDate;
   }
 };
-dateFormat();
 
 /**
  * calcul the age of the book and add key: value in books for it
  */
 const addAgeOfBook = () => {
   for (let i = 0; i < orderedBooks.length; i++) {
-    const currentYear = dayjs().year();
-    const yearOfBook = parseInt(orderedBooks[i].date.slice(-4));
-    const ageOfTheBook = currentYear - yearOfBook;
-    
-    orderedBooks[i].age = `${ageOfTheBook} ans`;
+    const ageOfBook = dayjs(orderedBooks[i].date).fromNow(true);
+    orderedBooks[i].age = ageOfBook;
   }
 };
 addAgeOfBook();
+dateFormat();
+
 
 module.exports = books;
